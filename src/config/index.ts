@@ -13,7 +13,7 @@ let config: IConfig = {
    * For github demo page, it will changed to 'react-redux-boilerplate'.
    */
   urlPrefix: '/',
-  // apiRootUrl: process.env.API_ROOT_URL || 'https://lunch-time.com/',
+  // apiRootUrl: process.env.API_ROOT_URL || 'https://boiler-plate.com/',
   apiRootUrl: process.env.API_ROOT_URL || 'http://127.0.0.1:8000/',
 };
 

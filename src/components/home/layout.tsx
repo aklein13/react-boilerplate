@@ -1,14 +1,12 @@
 import * as React from 'react';
-import {connect} from 'react-redux';
+import Home from './home';
 
 class HomeLayout extends React.Component<any, any> {
   public renderHome() {
     return (
       <div>
-        <h1>Welcome to Sample website.</h1>
-        <p>
-          This website helps you search for desired offer.
-        </p>
+        <h1>Welcome to Boilerplate website.</h1>
+        <Home/>
       </div>
     );
   };

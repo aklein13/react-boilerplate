@@ -1,8 +1,7 @@
-import {IInitialData} from "../models/initialData";
 import axios from 'axios';
 import {isNull} from "util";
 
-export const startRequest = (initialData: IInitialData, action, attrs={},
+export const startRequest = (initialData: {}, action, attrs={},
                              params = {}, method = 'GET', postData = null) => {
   return (dispatch) => {
     dispatch(StartedCallback(action, attrs, params, postData));

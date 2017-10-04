@@ -1,6 +1,3 @@
-$linkhormal: #39c;
-$linkhover: #94c;
-
 .container {
   margin: 0 auto;
   width: 85%;
@@ -11,13 +8,8 @@ $linkhover: #94c;
     width: 270px;
 
     a {
-      color: $linkhormal;
       font-weight: bold;
       text-decoration: none;
-
-      &:hover {
-        color: $linkhover;
-      }
     }
   }
 
@@ -32,8 +24,4 @@ $linkhover: #94c;
     padding-bottom: 50px;
     width: 500px;
   }
-}
-
-h1 {
-  text-align: center;
 }

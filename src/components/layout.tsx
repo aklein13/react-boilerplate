@@ -1,5 +1,4 @@
 import * as React from 'react';
-import {connect} from 'react-redux';
 import './layout.scss';
 import NavBar from './navBar';
 import {history} from '../prepare';
