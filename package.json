@@ -1,11 +1,11 @@
 {
-  "name": "lunch-time-web",
+  "name": "boilerplate",
   "version": "2.0.0-beta.3",
-  "description": "Lunch Time",
-  "homepage": "https://lunch-time.com/",
+  "description": "Boilerplate",
+  "homepage": "https://boiler-plate.com/",
   "author": {
-    "name": "Limebrains",
-    "email": "mail@limebrains.com"
+    "name": "Arkadiusz Klein",
+    "email": "arek.klein@gmail.com"
   },
   "keywords": [
     "typescript",
