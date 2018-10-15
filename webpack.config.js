@@ -1,13 +1,13 @@
-const path              = require('path');
-const webpack           = require('webpack');
-const PolyfillsPlugin   = require('webpack-polyfill-service-plugin');
+const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
+  mode: 'development',
   entry: {
     app: [
       'react-hot-loader/patch',
-      './src/app'
-    ]
+      './src/app',
+    ],
   },
   output: {
     path: path.resolve('./dist'),
@@ -16,39 +16,38 @@ module.exports = {
   },
   devtool: 'eval',
   plugins: [
-    new PolyfillsPlugin({
-      minify: true,
-      features: {
-        "fetch": {flags: ['always', 'gated']}
-      }
-    }),
     new webpack.DllReferencePlugin({
       context: __dirname,
       manifest: require('./manifest.json'),
-      sourceType: 'var'
+      sourceType: 'var',
     }),
     new webpack.NamedModulesPlugin(),
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
   ],
   resolve: {
-    extensions: ['.ts', '.tsx', '.js']
+    extensions: ['.ts', '.tsx', '.js'],
   },
   devServer: {
     historyApiFallback: true,
     hotOnly: true,
     contentBase: 'assets/',
     host: '0.0.0.0',
-    port: 8080
+    port: 8080,
   },
   module: {
     rules: [
       {
         test: /.*\.json$/,
-        loader: 'json-loader'
+        loader: 'json-loader',
       },
       {
         test: /\.jpe?g$|\.gif$|\.png$|\.svg$|\.woff$|\.ttf$|\.wav$|\.mp3$/,
-        loader: 'url'
+        loader: 'url',
+      },
+      {
+        test: /\.tsx?$/,
+        loaders: 'awesome-typescript-loader',
+        exclude: /node_modules/,
       },
       {
         test: /\.js$/,
@@ -57,20 +56,15 @@ module.exports = {
         enforce: 'pre',
       },
       {
-        test: /\.tsx?$/,
-        loaders: 'ts-loader',
-        exclude: /node_modules/
-      },
-      {
         test: /\.scss$/,
         loaders: ['style-loader', 'css-loader', 'sass-loader'],
-        exclude: /node_modules/
+        exclude: /node_modules/,
       },
       {
         test: /\.css$/,
         loaders: ['style-loader', 'css-loader'],
-        exclude: /node_modules/
-      }
-    ]
-  }
-}
+        exclude: /node_modules/,
+      },
+    ],
+  },
+};

@@ -1,5 +1,8 @@
-$linkhormal: #39c;
-$linkhover: #94c;
+$mainColor: #3399cc;
+
+* {
+  box-sizing: border-box;
+}
 
 .container {
   margin: 0 auto;
@@ -9,15 +12,10 @@ $linkhover: #94c;
     float: left;
     position: fixed;
     width: 270px;
-
     a {
-      color: $linkhormal;
+      color: $mainColor;
       font-weight: bold;
       text-decoration: none;
-
-      &:hover {
-        color: $linkhover;
-      }
     }
   }
 
@@ -36,4 +34,10 @@ $linkhover: #94c;
 
 h1 {
   text-align: center;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

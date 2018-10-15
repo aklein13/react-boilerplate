@@ -1,12 +1,13 @@
-import {API_ACTIONS} from '../../actionTypes';
+import { ACTIONS } from '../../actionTypes';
+import { AnyAction } from 'redux';
 
-const initialState: any = {
+const initialState = {
   isFetching: false,
 };
 
-export const auth = (state = initialState, action: any) => {
+export const auth = (state = initialState, action: AnyAction) => {
   switch (action.type) {
-    case API_ACTIONS.SAMPLE_ACTION:
+    case ACTIONS.SAMPLE_ACTION:
       return {
         ...state,
       };

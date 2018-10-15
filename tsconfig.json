@@ -2,32 +2,24 @@
   "compileOnSave": false,
   "buildOnSave": false,
   "compilerOptions": {
-    "outDir": "./dist/",
+    "baseUrl": ".",
+    "outDir": "build/dist",
+    "module": "esnext",
     "target": "es5",
-    "module": "commonjs",
-    "moduleResolution": "node",
-    "jsx": "react",
+    "lib": ["es6", "dom"],
     "sourceMap": true,
-
-    "noEmitOnError": true,
-    "alwaysStrict": true,
+    "allowJs": true,
+    "jsx": "react",
+    "moduleResolution": "node",
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noImplicitAny": true,
     "importHelpers": true,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "noImplicitAny": false,
-    "lib": [
-      "dom",
-      "es5",
-      "es2015.iterable",
-      "es2015.promise",
-      "es2015.symbol",
-      "es2017"
-    ]
+    "strictNullChecks": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "noUnusedLocals": true
   },
-  "files": [
-    "./src/app.tsx",
-    "src/redux/actionTypes.ts"
-  ],
   "exclude": [
     "node_modules"
   ]

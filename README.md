@@ -1,12 +1,24 @@
-# React Boilerplate on Typescript
+# React Typescript Boilerplate
 
-# Instruction:
+
+# Instruction
+## Install:
 1. git clone
 2. yarn
-3. npm run buildvendor
-4. npm start / yarn start
+3. yarn buildvendor
+
+## Development
+1. yarn start
+2. http://localhost:8080
+
+# Production build:
+1. yarn build
+2. output in ./dist
+
 
 # Includes:
-- Typescript
-- SASS
+- React
 - Redux
+- SASS
+- Webpack
+- Typescript
