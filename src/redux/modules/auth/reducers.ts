@@ -1,11 +1,11 @@
-import { ACTIONS, API_ACTIONS } from '../../actionTypes';
+import { ACTIONS, API_ACTIONS } from '../../actions';
 import { AnyAction } from 'redux';
 
 export interface IAuthState {
   isFetching: boolean;
 }
 
-const initialState = {
+const initialState: IAuthState = {
   isFetching: true,
 };
 

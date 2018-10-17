@@ -1,4 +1,4 @@
-import { IApiAction } from './actionTypes';
+import { IApiAction } from './actions';
 import { Dispatch } from 'react-redux';
 import { AnyAction } from 'redux';
 

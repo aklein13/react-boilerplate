@@ -1,4 +1,4 @@
-import { ACTIONS, API_ACTIONS } from '../../actionTypes';
+import { ACTIONS, API_ACTIONS } from '../../actions';
 import { startRequest } from '../../api';
 
 export function apiCall() {
