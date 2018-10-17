@@ -26,7 +26,6 @@ class Layout extends React.Component<any, IState> {
   }
 
   public render() {
-    console.log(this.props);
     return (
       <div className="container">
         <NavBar />

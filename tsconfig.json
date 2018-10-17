@@ -18,9 +18,8 @@
     "importHelpers": true,
     "strictNullChecks": true,
     "suppressImplicitAnyIndexErrors": true,
-    "noUnusedLocals": true
+    "noUnusedLocals": true,
+    "removeComments": true
   },
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["dist", "build", "node_modules"]
 }

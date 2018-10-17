@@ -6,7 +6,6 @@ import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
 
 /* React Router */
 import { hashHistory, browserHistory } from 'react-router';
-import * as ReduxPromise from 'redux-promise';
 /* Reducers */
 import { logger } from 'redux-logger';
 
@@ -25,17 +24,14 @@ const reducer = combineReducers({
 function configureStore({}) {
   const createdStore =
     process.env.NODE_ENV === 'production'
-      ? createStore(
-          reducer,
-          initialState,
-          compose(applyMiddleware(ReduxPromise, thunk))
-        )
+      ? createStore(reducer, initialState, compose(applyMiddleware(thunk)))
       : createStore(
           reducer,
           initialState,
-          compose(applyMiddleware(ReduxPromise, thunk, logger))
+          compose(applyMiddleware(thunk, logger))
         );
 
+  // @ts-ignore
   const { hot } = module;
   if (hot) {
     hot.accept('./reducers', () => {
@@ -50,15 +46,19 @@ function configureStore({}) {
   return createdStore;
 }
 
-// Default saves and read saved redux state from local storage
-const initialState = localStorage.getItem('reduxState')
-  ? JSON.parse(localStorage.getItem('reduxState') || '')
-  : {};
+/* Possible persistent redux state thought localStorage. Just remove false and uncomment store.subscribe */
+const initialState =
+  false && localStorage.getItem('reduxState')
+    ? JSON.parse(localStorage.getItem('reduxState') || '')
+    : {};
 
 export const store = configureStore(initialState);
-store.subscribe(() => {
-  localStorage.setItem('reduxState', JSON.stringify(store.getState()));
-});
+
+/* Uncomment this for persistent redux state */
+// store.subscribe(() => {
+//   localStorage.setItem('reduxState', JSON.stringify(store.getState()));
+// });
+
 /* Initial history */
 let routerHistory;
 if (config.historyBackend === 'browserHistory') {
