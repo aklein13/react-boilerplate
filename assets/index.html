@@ -1,7 +1,10 @@
 <!doctype html>
-<!--[if lte IE 7 ]><html class="no-js ie lte7 lte8 lte9 widgets"><![endif]-->
-<!--[if IE 8 ]><html class="no-js ie ie8 lte8 lte9 widgets"><![endif]-->
-<!--[if IE 9 ]><html class="no-js ie ie9 lte9 widgets"><![endif]-->
+<!--[if lte IE 7 ]>
+<html class="no-js ie lte7 lte8 lte9 widgets"><![endif]-->
+<!--[if IE 8 ]>
+<html class="no-js ie ie8 lte8 lte9 widgets"><![endif]-->
+<!--[if IE 9 ]>
+<html class="no-js ie ie9 lte9 widgets"><![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!-->
 <html>
 <!--<![endif]-->
@@ -11,18 +14,25 @@
   <!-- Google hash fragments for Ajax crawl -->
   <!-- https://developers.google.com/webmasters/ajax-crawling/docs/getting-started -->
   <meta name="fragment" content="!">
-  <meta name="keywords" content="Boilerplate" />
-  <meta name="description" content="Boilerplate" />
+  <meta name="keywords" content="Boilerplate"/>
+  <meta name="description" content="Boilerplate"/>
   <meta name="author" content="arek.klein@gmail.com">
   <meta name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+  <!-- Android -->
+  <meta name="theme-color" content="#3399CC">
+  <meta name="msapplication-navbutton-color" content="#3399CC">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#3399CC">
+  <meta name="msapplication-TileColor" content="#3399CC">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <title>Boilerplate</title>
 
   <!-- Set render engine for 360 browser -->
   <meta name="renderer" content="webkit">
-
-  <!-- No Baidu Siteapp-->
-  <meta http-equiv="Cache-Control" content="no-siteapp"/>
 
   <link rel="icon" type="image/png" href="./imgs/favicon.png">
 
@@ -40,21 +50,21 @@
   <meta name="msapplication-TileImage" content="./imgs/app-icon72x72@2x.png">
   <meta name="msapplication-TileColor" content="#0e90d2">
 
-  <!-- SEO: If your mobile URL is different from the desktop URL, add a canonical link to the desktop page https://developers.google.com/webmasters/smartphone-sites/feature-phones -->
-  <!-- <link rel="canonical" href="http://www.kuang.it/"> -->
-
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
   <style type="text/css">
-  body {font-family: "Segoe UI","Lucida Grande",Helvetica,Arial,"Microsoft YaHei",FreeSans,Arimo,"Droid Sans","wenquanyi micro hei","Hiragino Sans GB","Hiragino Sans GB W3",FontAwesome,sans-serif;}
+    body {
+      font-family: "Roboto", "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", FontAwesome, sans-serif;
+    }
   </style>
 </head>
 <body>
-  <!--[if lt IE 9 ]>
-  <div style="width: 100%; background-color: yellow; padding: 20px;">
-    <a href="http://browsehappy.com/">Please upgrade your browser.</a>
-  </div>
-  <![endif]-->
-  <div id="site"></div>
-  <script src="./vendor.js"></script>
-  <script src="./app.js"></script>
+<!--[if lt IE 9 ]>
+<div style="width: 100%; background-color: yellow; padding: 20px;">
+  <a href="http://browsehappy.com/">Please upgrade your browser.</a>
+</div>
+<![endif]-->
+<div id="site"></div>
+<script src="./vendor.js"></script>
+<script src="./app.js"></script>
 </body>
 </html>

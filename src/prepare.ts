@@ -1,16 +1,13 @@
-import {auth} from './redux/modules/auth/reducers';
-
-declare var window: any;
+import { auth } from './redux/modules/auth/reducers';
 
 /* Redux */
-import {routerReducer, syncHistoryWithStore} from 'react-router-redux';
-import {applyMiddleware, combineReducers, compose, createStore} from 'redux';
+import { routerReducer, syncHistoryWithStore } from 'react-router-redux';
+import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
 
 /* React Router */
-import * as reactRouter from 'react-router';
-import * as ReduxPromise from 'redux-promise';
+import { hashHistory, browserHistory } from 'react-router';
 /* Reducers */
-import {createLogger} from 'redux-logger';
+import { logger } from 'redux-logger';
 
 // const reducers = require('./reducers');
 import thunk from 'redux-thunk';
@@ -23,24 +20,21 @@ const reducer = combineReducers({
   auth,
 });
 
-const logger = createLogger({
-  // ...options
-});
-
 /* Initial the store */
-function configureStore(initialState: any): any {
-  // Initial the redux devtools for Chrome
-  // https://github.com/zalmoxisus/redux-devtools-extension/
-  const createdStore = createStore(reducer, initialState,
-    compose(
-      applyMiddleware(logger, ReduxPromise, thunk),
-      window.devToolsExtension ? window.devToolsExtension() : (f: any) => f)
-  );
+function configureStore({}) {
+  const createdStore =
+    process.env.NODE_ENV === 'production'
+      ? createStore(reducer, initialState, compose(applyMiddleware(thunk)))
+      : createStore(
+          reducer,
+          initialState,
+          compose(applyMiddleware(thunk, logger))
+        );
 
-  const {hot} = module as any;
+  // @ts-ignore
+  const { hot } = module;
   if (hot) {
     hot.accept('./reducers', () => {
-      const auth = require('./redux/modules/auth/reducers');
       const nextReducer = combineReducers({
         routing: routerReducer,
         auth,
@@ -52,18 +46,24 @@ function configureStore(initialState: any): any {
   return createdStore;
 }
 
-// Default saves and read saved redux state from local storage
-const initialState = localStorage.getItem('reduxState') ? JSON.parse(localStorage.getItem('reduxState')) : {};
+/* Possible persistent redux state thought localStorage. Just remove false and uncomment store.subscribe */
+const initialState =
+  false && localStorage.getItem('reduxState')
+    ? JSON.parse(localStorage.getItem('reduxState') || '')
+    : {};
 
 export const store = configureStore(initialState);
-store.subscribe(() => {
-  localStorage.setItem('reduxState', JSON.stringify(store.getState()));
-});
+
+/* Uncomment this for persistent redux state */
+// store.subscribe(() => {
+//   localStorage.setItem('reduxState', JSON.stringify(store.getState()));
+// });
+
 /* Initial history */
-let routerHistory: any;
+let routerHistory;
 if (config.historyBackend === 'browserHistory') {
-  routerHistory = reactRouter.browserHistory;
+  routerHistory = browserHistory;
 } else {
-  routerHistory = reactRouter.hashHistory;
+  routerHistory = hashHistory;
 }
 export const history = syncHistoryWithStore(routerHistory, store);

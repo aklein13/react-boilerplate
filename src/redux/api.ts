@@ -1,30 +1,39 @@
-import axios from 'axios';
-import {isNull} from "util";
+import { IApiAction } from './actions';
+import { Dispatch } from 'react-redux';
+import { AnyAction } from 'redux';
 
-export const startRequest = (initialData: {}, action, attrs={},
-                             params = {}, method = 'GET', postData = null) => {
-  return (dispatch) => {
+interface IRequestData {
+  method: string;
+  headers: {};
+  body?: string;
+}
+
+export const startRequest = (
+  initialData: {},
+  action: IApiAction,
+  attrs: {} = {},
+  params: {} = {},
+  method: string = 'GET',
+  postData: any = null
+) => {
+  return (dispatch: Dispatch<AnyAction>) => {
     dispatch(StartedCallback(action, attrs, params, postData));
     const urlParams = encodeQueryData(params);
-    let requestData: any = {
+    method = method.toUpperCase();
+    const requestData: IRequestData = {
       method,
       headers: {},
     };
-    if (!isNull(postData) && postData.Authorization) {
-      requestData.headers['Authorization'] = postData.Authorization;
-      delete postData.Authorization;
-    }
 
     let url = `${action.url}?${urlParams}`;
-    for (let attr in attrs) {
+    for (const attr in attrs) {
       if (attrs.hasOwnProperty(attr)) {
         url = url.replace(`{${attr}}`, attrs[attr]);
       }
     }
-
     if (
-      (method.toUpperCase() === 'POST' || method.toUpperCase() === 'PUT' || method.toUpperCase() === 'PATCH')
-      && postData
+      (method === 'POST' || method === 'PUT' || method === 'PATCH') &&
+      postData
     ) {
       requestData.headers['content-type'] = 'application/json';
       requestData.body = JSON.stringify(postData);
@@ -34,21 +43,36 @@ export const startRequest = (initialData: {}, action, attrs={},
       .then((res: any) => {
         if (res.ok) {
           if (res.status === 204) {
-            return dispatch(SuccessCallback(res, action, attrs, params, postData));
+            return dispatch(
+              SuccessCallback(res, action, attrs, params, postData)
+            );
           }
-          return res.json()
-            .then((res: any) => dispatch(SuccessCallback(res, action, attrs, params, postData)));
+          return res
+            .json()
+            .then((result: any) =>
+              dispatch(SuccessCallback(result, action, attrs, params, postData))
+            );
         } else {
-          return res.json()
-            .then((res: any) => dispatch(FailureCallback(res, action, attrs, params, postData)));
+          return res
+            .json()
+            .then((result: any) =>
+              dispatch(FailureCallback(result, action, attrs, params, postData))
+            );
         }
       })
-      .catch((err) => dispatch(FailureCallback(err, action, attrs, params, postData)));
+      .catch((err: any) =>
+        dispatch(FailureCallback(err, action, attrs, params, postData))
+      );
   };
 };
 
 /** Action Creators */
-export function StartedCallback(action, attrs, params, postData): any {
+export function StartedCallback(
+  action: IApiAction,
+  attrs: {},
+  params: {},
+  postData: {} | null
+) {
   return {
     type: action.startRequest,
     attrs,
@@ -57,7 +81,13 @@ export function StartedCallback(action, attrs, params, postData): any {
   };
 }
 
-export function SuccessCallback(res: any, action, attrs, params, postData): any {
+export function SuccessCallback(
+  res: {},
+  action: IApiAction,
+  attrs: {},
+  params: {},
+  postData: {} | null
+) {
   return {
     type: action.successRequest,
     res,
@@ -67,7 +97,13 @@ export function SuccessCallback(res: any, action, attrs, params, postData): any 
   };
 }
 
-export function FailureCallback(message: any, action, attrs, params, postData): any {
+export function FailureCallback(
+  message: string,
+  action: IApiAction,
+  attrs: {},
+  params: {},
+  postData: {} | null
+) {
   return {
     type: action.failureRequest,
     errorMessage: message,
@@ -77,10 +113,9 @@ export function FailureCallback(message: any, action, attrs, params, postData): 
   };
 }
 
-/** Utils **/
-export const encodeQueryData = (data) => {
-  let ret = [];
-  for (let d in data) {
+export const encodeQueryData = (data: {}) => {
+  const ret = [];
+  for (const d in data) {
     if (data.hasOwnProperty(d)) {
       ret.push(encodeURIComponent(d) + '=' + encodeURIComponent(data[d]));
     }

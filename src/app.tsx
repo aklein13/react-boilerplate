@@ -7,7 +7,7 @@ import Routes from './routes';
 /* Start the app */
 const rootEl = document.getElementById('site');
 ReactDOM.render((
-    <AppContainer>
-      <Routes/>
-    </AppContainer>
+  <AppContainer>
+    <Routes/>
+  </AppContainer>
 ), rootEl);
