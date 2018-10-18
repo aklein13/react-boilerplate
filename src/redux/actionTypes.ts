@@ -13,7 +13,7 @@ export const ROOT_URL = config.apiRootUrl;
 export const API_ACTIONS: { [key: string]: IApiAction } = {
   API_ACTION: {
     action: 'api_action',
-    url: `${ROOT_URL}auth/convert-token/`,
+    url: `${ROOT_URL}posts/1/`,
     startRequest: 'api_action/REQUEST_STARTED',
     successRequest: 'api_action/REQUEST_SUCCESS',
     failureRequest: 'api_action/REQUEST_FAILURE',

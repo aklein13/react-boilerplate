@@ -1,4 +1,4 @@
-import { IApiAction } from './actions';
+import { IApiAction } from './actionTypes';
 import { Dispatch } from 'react-redux';
 import { AnyAction } from 'redux';
 
@@ -44,24 +44,28 @@ export const startRequest = (
         if (res.ok) {
           if (res.status === 204) {
             return dispatch(
-              SuccessCallback(res, action, attrs, params, postData)
+              SuccessCallback(res, action, attrs, params, url, postData)
             );
           }
           return res
             .json()
             .then((result: any) =>
-              dispatch(SuccessCallback(result, action, attrs, params, postData))
+              dispatch(
+                SuccessCallback(result, action, attrs, params, url, postData)
+              )
             );
         } else {
           return res
             .json()
             .then((result: any) =>
-              dispatch(FailureCallback(result, action, attrs, params, postData))
+              dispatch(
+                FailureCallback(result, action, attrs, params, url, postData)
+              )
             );
         }
       })
       .catch((err: any) =>
-        dispatch(FailureCallback(err, action, attrs, params, postData))
+        dispatch(FailureCallback(err, action, attrs, params, url, postData))
       );
   };
 };
@@ -86,6 +90,7 @@ export function SuccessCallback(
   action: IApiAction,
   attrs: {},
   params: {},
+  url: string,
   postData: {} | null
 ) {
   return {
@@ -93,6 +98,7 @@ export function SuccessCallback(
     res,
     attrs,
     params,
+    url,
     postData,
   };
 }
@@ -102,6 +108,7 @@ export function FailureCallback(
   action: IApiAction,
   attrs: {},
   params: {},
+  url: string,
   postData: {} | null
 ) {
   return {
@@ -109,6 +116,7 @@ export function FailureCallback(
     errorMessage: message,
     attrs,
     params,
+    url,
     postData,
   };
 }
