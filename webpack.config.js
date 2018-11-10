@@ -38,6 +38,7 @@ module.exports = {
     rules: [
       {
         test: /.*\.json$/,
+        type: 'javascript/auto',
         loader: 'json-loader',
       },
       {

@@ -20,7 +20,7 @@
   "license": "MIT",
   "scripts": {
     "start": "webpack-dev-server",
-    "build": "cross-env NODE_ENV=production yarn buildvendor && webpack --display-error-details --config webpack-production.config.js && rm ./dist/*.map && cross-env NODE_ENV=dev yarn buildvendor",
+    "build": "cross-env NODE_ENV=production yarn buildvendor && webpack --display-error-details --config webpack-production.config.js && rimraf ./dist/*.map && cross-env NODE_ENV=dev yarn buildvendor",
     "buildvendor": "webpack --config webpack-vendor.config.js"
   },
   "engines": {
@@ -29,7 +29,6 @@
     "yarn": ">=0.16.0"
   },
   "dependencies": {
-    "lodash": "^4.17.11",
     "moment": "^2.22.2",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
@@ -61,6 +60,7 @@
     "identity-obj-proxy": "^3.0.0",
     "imports-loader": "^0.7.0",
     "node-sass": "^4.9.3",
+    "rimraf": "^2.6.2",
     "sass-loader": "^7.1.0",
     "source-map-loader": "^0.2.4",
     "style-loader": "^0.23.1",
