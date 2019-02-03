@@ -42,8 +42,8 @@ module.exports = {
         loader: 'json-loader',
       },
       {
-        test: /\.jpe?g$|\.gif$|\.png$|\.svg$|\.woff$|\.ttf$|\.wav$|\.mp3$/,
-        loader: 'url',
+        test: /\.jpe?g$|\.gif$|\.png$|\.svg$|\.eot$|\.woff$|\.ttf$|\.wav$|\.mp3$/,
+        loader: 'url-loader',
       },
       {
         test: /\.tsx?$/,
